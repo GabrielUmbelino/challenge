@@ -1,0 +1,31 @@
+{
+  "rules": {
+    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/ban-ts-comment": "error",
+    "svelte/block-lang": [
+      "error",
+      {
+        "enforceScriptPresent": true,
+        "enforceStylePresent": false,
+        "script": ["ts"],
+        "style": ["scss"]
+      }
+    ]
+  },
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "svelte"],
+  "parserOptions": {
+    "project": ["./tsconfig.json", "./tsconfig.node.json"],
+    "extraFileExtensions": [".svelte"],
+    "sourceType": "module"
+  },
+  "overrides": [
+    {
+      "files": ["*.svelte"],
+      "parser": "svelte-eslint-parser",
+      "parserOptions": {
+        "parser": "@typescript-eslint/parser"
+      }
+    }
+  ]
+}

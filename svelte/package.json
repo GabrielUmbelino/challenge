@@ -1,0 +1,34 @@
+{
+  "name": "svelte-app",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite --port 5050",
+    "preview": "vite preview",
+    "validate": "svelte-check --tsconfig ./tsconfig.json --fail-on-warnings",
+    "lint": "eslint src/components/**/*.svelte"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^3.0.1",
+    "@tsconfig/svelte": "^5.0.2",
+    "@typescript-eslint/eslint-plugin": "^7.2.0",
+    "@typescript-eslint/parser": "^7.2.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-svelte": "^2.35.1",
+    "prettier": "^3.1.0",
+    "prettier-plugin-svelte": "^3.1.2",
+    "sass": "^1.69.5",
+    "svelte": "^4.2.8",
+    "svelte-check": "^3.6.2",
+    "tslib": "^2.6.2",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.6"
+  },
+  "dependencies": {
+    "lodash-es": "^4.17.21"
+  },
+  "browserslist": [
+    "last 2 Chrome versions"
+  ]
+}
