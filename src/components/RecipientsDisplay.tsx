@@ -6,18 +6,22 @@ type RecipientsDisplayProps = PropsWithChildren<{ recipients: string[] }>
 
 function RecipientsDisplay({ recipients, ...rest }: RecipientsDisplayProps) {
   const formattedRecipients = useMemo(() => {
-    if (!recipients.length) return ''
+    if (!recipients.length) return []
 
-    if (recipients.length === 1) return recipients[0]
+    if (recipients.length === 1) return [recipients[0]]
 
-    return recipients.join(', ')
+    return recipients
   }, [recipients])
 
   return (
     <div {...rest}>
-      <span className='recipients-display'>
-        {formattedRecipients}
-      </span>
+      {formattedRecipients.map(recipient => {
+        return (
+          <span className='recipient'>
+            {recipient}
+          </span>
+        )
+      })}
       <RecipientsBadge numTruncated={recipients.length} />
     </div>
   )
@@ -31,9 +35,12 @@ export default styled(RecipientsDisplay)`
   background: #fff;
   overflow: hidden;
 
-  span.recipients-display {
-    overflow: hidden;
-    text-overflow: ellipsis;
+  span.recipient {
     line-height: 1.4rem;
   }
+
+  span.recipient:after {
+    content: ','
+  }
+
 `
