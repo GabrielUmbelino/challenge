@@ -57,6 +57,7 @@ const RecipientTooltip = styled(BaseRecipientTooltip)`
     border-radius: 24px;
     flex-wrap: wrap;
   }
+
   .tooltip-panel div:not(:first-child):before {
     content: ', ';
   }
@@ -88,12 +89,12 @@ function RecipientsDisplay({ recipients, ...rest }: RecipientsDisplayProps) {
     } else {
       setTrimFirstRecipient(false)
     }
-    debugger
+
     if (recipientsParentWidth < recipientsWidth) {
       setTrimRecipients(true)
       setTrimRecipientsCount(
         recipientsRef?.current?.children?.length
-          ? recipientsRef?.current?.children?.length - 1
+          ? recipientsRef.current.children.length - 1
           : 0,
       )
     } else {
@@ -102,7 +103,7 @@ function RecipientsDisplay({ recipients, ...rest }: RecipientsDisplayProps) {
     }
   }, [recipients, recipientsWidth, recipientsParentWidth, firstRecipientWidth])
 
-  const updateDimensions = useCallback(() => {
+  const updateWidth = useCallback(() => {
     if (!recipientsRef.current?.parentElement) return
     setRecipientsParentWidth(recipientsRef.current.parentElement.clientWidth)
     setRecipientsWidth((_prev: number) => {
@@ -129,13 +130,13 @@ function RecipientsDisplay({ recipients, ...rest }: RecipientsDisplayProps) {
   }, [recipientsRef.current?.parentElement?.clientWidth])
 
   useLayoutEffect(() => {
-    updateDimensions()
+    updateWidth()
   }, [recipientsRef])
 
   useEffect(() => {
-    window.addEventListener('resize', updateDimensions)
+    window.addEventListener('resize', updateWidth)
     return () => {
-      window.removeEventListener('resize', updateDimensions)
+      window.removeEventListener('resize', updateWidth)
     }
   }, [])
 
